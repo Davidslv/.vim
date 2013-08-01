@@ -25,7 +25,7 @@
 	url  = https://github.com/vim-scripts/ZoomWin.git
 [submodule "bundle/file-line"]
 	path = bundle/file-line
-	url  = https://github.com/vim-scripts/file-line.git
+  url  = https://github.com/vim-scripts/file-line.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url  = https://github.com/scrooloose/nerdtree.git
