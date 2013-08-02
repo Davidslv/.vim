@@ -46,3 +46,9 @@ set showcmd                    " Display an incomplete command in the lower righ
 
 set splitbelow
 set splitright
+
+" Mapping
+
+let mapleader= "\\"
+map <leader>n :NERDTreeToggle<CR>
+map <leader>b :BuffergatorToggle<CR>
