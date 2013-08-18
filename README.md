@@ -2,7 +2,6 @@
 ========
 ## Install:
 ```bash
-cd ~
 git clone git@github.com:Davidslv/.vim.git ~/.vim
 cd ~/.vim
 git submodule update --init
@@ -14,17 +13,20 @@ Cheatsheet
 ```bash
 git submodule foreach git pull origin master
 ```
+
 #### Add submodule
 ```bash
 git submodule add <git-url> bundle/foo.vim
 git commit -am "Installs foo"
 ```
+
 #### Update all submodules
 ```bash
 git submodule foreach git checkout master
 git submodule foreach git pull
 git commit -am "Updates submodules"
 ```
+
 #### Remove submodule
 ```bash
 Remove it from .gitmodules
