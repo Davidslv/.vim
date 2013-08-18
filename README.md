@@ -3,7 +3,7 @@
 ## Install:
 ```bash
 cd ~
-git clone http://github.com/davidslv/dotvim.git ~/.vim
+git clone http://github.com/davidslv/.vim.git ~/.vim
 cd ~/.vim
 git submodule update --init
 ```
