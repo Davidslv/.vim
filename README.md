@@ -4,7 +4,7 @@
 ```bash
 git clone git@github.com:Davidslv/.vim.git ~/.vim
 cd ~/.vim
-git submodule update --init
+./setup.sh
 ```
 
 Cheatsheet
