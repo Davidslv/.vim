@@ -1,54 +1,71 @@
-" Using Pathogen
-execute pathogen#infect()
+" read: https://github.com/vim-ruby/vim-ruby/wiki/VimRubySupport
+" https://github.com/tpope/vim-pathogen
+call pathogen#infect()
 
-" General Configuration
-set nocompatible               " disable vi compatibility.
-set history=256                " Number of things to remember in history.
-set timeoutlen=250             " Time to wait after ESC (default causes an annoying delay
-set autoread                   " If the file is saved in another editor, it reloads
-set history=300
-
-" Colors
-colors jellybeans
-" colors twilight
-" colors seoul256
-" colors vividchalk
-
-" Match and search
-set hlsearch                   " highlight matches
-set incsearch                  " incremental searching
-set ignorecase                 " searches are case insensitive...
-set smartcase                  " ... unless they contain at least one capital letter
-
-
-" Formatting 
-set encoding=utf-8
-set wildmode=longest,list       " At command line, complete longest common string, then list alternatives.
-set nowrap                      " don't wrap lines
-set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
+set nocompatible
+syntax on
+set number
+set expandtab
+set shiftwidth=2
 set softtabstop=2
-set expandtab                   " use spaces, not tabs (optional)
-set backspace=indent,eol,start  " backspace through everything in insert mode
 
-syntax on                      " enable syntax
-filetype plugin indent on      " Automatically detect file types.
+" make backspace work normally
+set backspace=indent,eol,start
 
-" Visual
-set number                     " Line numbers off
-set showmatch                  " Show matching brackets.
-set matchtime=5                " Bracket blinking.
-set visualbell                 " No blinking
-set noerrorbells               " No noise.
-set laststatus=2               " Always show status line.
+"###################################################
+"# http://amix.dk/vim/vimrc.html
+"###################################################
 
-set ruler                      " Shows column,line of the cursor
-set showcmd                    " Display an incomplete command in the lower right corner of the Vim window
+" Sets how many lines of history VIM has to remember
+set history=700
 
-set splitbelow
-set splitright
+"Always show current position
+set ruler
 
-" Mapping
 
-let mapleader= "\\"
-map <leader>n :NERDTreeToggle<CR>
-map <leader>b :BuffergatorToggle<CR>
+" Configure backspace so it acts as it should act
+" set backspace=eol,start,indent
+" set whichwrap+=<,>,h,l
+
+" Highlight search results
+set hlsearch
+
+" For regular expressions turn magic on
+set magic
+
+"###################################################
+"# NERDTREE
+"# http://kennedysgarage.com/articles/nerdtree
+"###################################################
+
+"Show hidden files in NerdTree
+let NERDTreeShowHidden=1
+ 
+" Enable NERDTree plugin
+autocmd VimEnter * NERDTree
+
+filetype plugin indent on
+
+noremap <Leader>n :NERDTreeToggle<cr>
+
+" Close NERDTree, then vim
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+
+"autopen NERDTree and focus cursor in new document
+autocmd VimEnter * NERDTree  
+autocmd VimEnter * wincmd p
